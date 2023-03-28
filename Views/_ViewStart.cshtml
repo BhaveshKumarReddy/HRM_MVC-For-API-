@@ -1,0 +1,13 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    //HttpContextAccessor.HttpContext.Session.SetString("Location", "B6");
+    //HttpContextAccessor.HttpContext.Session.SetString("Email","ak@gmail.com");
+    ViewBag.Login = HttpContextAccessor.HttpContext.Session.GetString("Email");
+    Layout = "_Layout";
+}
+<script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+</script>

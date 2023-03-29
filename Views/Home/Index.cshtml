@@ -83,11 +83,12 @@
     </div>
     @if (ViewBag.login != null)
     {
-        <div style="border-top:2px solid white" class="right-box text-center">
-            <h4 style="color:white;" class="h4-rightBox">Manage</h4>
-            <a class="a-rightBox" asp-controller="EmployeesList" asp-action="display_Employees">Employees in @ViewBag.location</a>
-            <a class="a-rightBox" asp-controller="HrList" asp-action="edit_HR">Edit Account</a>
-        </div>
+<div style="border-top:2px solid white" class="right-box text-center">
+    <h4 style="color:white;" class="h4-rightBox">Manage</h4>
+    <a class="a-rightBox" asp-controller="EmployeesList" asp-action="display_Employees">Employees In @ViewBag.location</a>
+    <a class="a-rightBox" asp-controller="HrList" asp-action="edit_HR">Edit Your Account</a>
+    <a class="a-rightBox" asp-controller="EmployeesList" asp-action="employeeStatistics">Statistics</a>
+</div>
     }
 </div>
 

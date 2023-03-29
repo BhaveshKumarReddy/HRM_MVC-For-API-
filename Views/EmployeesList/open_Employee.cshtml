@@ -47,9 +47,22 @@
         padding-bottom: 5px;
         border-bottom: 3px solid white;
     }
+
+    .li-tab-button:hover {
+        cursor: pointer;
+        border-bottom: 5px solid rgb(30, 255, 0);
+    }
+
+    .back-link:hover {
+        background-color: #69738379;
+        border: 1px solid white;
+        border-radius: 5px;
+        padding: 6px 11px 7px 11px;
+        text-decoration: none;
+    }
 </style>
 <div>
-    <a style="color:#ededed" asp-action="display_Employees">
+    <a class="back-link" style="color:#ededed" asp-action="display_Employees">
         <i class="fa fa-arrow-left"></i> Back
     </a>
     <hr />

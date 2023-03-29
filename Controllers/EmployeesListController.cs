@@ -350,5 +350,92 @@ namespace HRM_MVC.Controllers
                 return RedirectToAction("handleException", "Home", new { message = e.Message });
             }
         }
+
+        public async Task<ActionResult> employeeStatistics() {
+
+            try
+            {
+                if (HttpContext.Session.GetString("Email") == null)
+                {
+                    return RedirectToAction("login_HR", "HrList");
+                }
+                string location_id = HttpContext.Session.GetString("Location");
+                List<EmployeesList> employees_list = new();
+                using (var client = new HttpClient())
+                {
+                    using (var res = await client.GetAsync("https://localhost:44392/api/EmployeesList/" + location_id))
+                    {
+                        if (res.IsSuccessStatusCode)
+                        {
+                            var Response = await res.Content.ReadAsStringAsync();
+                            employees_list = JsonConvert.DeserializeObject<List<EmployeesList>>(Response);
+                        }
+                        else
+                        {
+                            throw new Exception("Error occured while fetching details!");
+                        }
+                    }
+                }
+
+                Dictionary<String, int> dict = new();
+
+                foreach(var emp in employees_list)
+                {
+                    if (dict.ContainsKey(emp.EmployeeRole))
+                    {
+                        dict[emp.EmployeeRole] = 1 + dict[emp.EmployeeRole];
+                    }
+                    else
+                    {
+                        dict.Add(emp.EmployeeRole, 1);
+                    }
+                }
+
+                SortedDictionary<DateTime,int> dict2 = new();
+
+                foreach( var emp in employees_list)
+                {
+                    DateTime temp = Convert.ToDateTime(emp.EmployeeDoj);
+                    if (dict2.ContainsKey(temp))
+                    {
+                        dict2[temp] = 1 + dict2[temp];
+                    }
+                    else
+                    {
+                        dict2.Add(temp,1);
+                    }
+                }
+
+                var lstModel = new List<EmployeesList>();
+                foreach (KeyValuePair<String, int> kp in dict)
+                {
+                    lstModel.Add(new EmployeesList
+                    {
+                        EmployeeRole = kp.Key,
+                        EmployeePoints = kp.Value
+                    });
+                }
+
+                var SndModel = new List<EmployeesList>();
+                foreach (KeyValuePair<DateTime, int> kp in dict2)
+                {
+                    SndModel.Add(new EmployeesList
+                    {
+                        EmployeeDoj = kp.Key,
+                        EmployeePoints = kp.Value
+                    });
+                }
+
+                ViewBag.xlabel = Newtonsoft.Json.JsonConvert.SerializeObject(SndModel.Select(x => x.EmployeeDoj).ToList());
+                ViewBag.ylabel = Newtonsoft.Json.JsonConvert.SerializeObject(SndModel.Select(x => x.EmployeePoints).ToList());
+
+                return View(lstModel);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("handleException", "Home", new { message = e.Message });
+            }
+
+        }
     }
 }

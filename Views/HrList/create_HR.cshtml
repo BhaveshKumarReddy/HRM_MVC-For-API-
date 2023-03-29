@@ -18,37 +18,49 @@
         padding: 30px;
         border-radius: 7px;
     }
+
+    .back-link:hover {
+        background-color: #69738379;
+        border: 1px solid white;
+        border-radius: 5px;
+        padding: 6px 11px 7px 11px;
+        text-decoration: none;
+    }
 </style>
 
 
 <div>
-    <a style="color:#ededed" asp-controller="Home" asp-action="Index">
+    <a class="back-link" style="color:#ededed" asp-controller="Home" asp-action="Index">
         <i class="fa fa-arrow-left"></i> Back
     </a>
 </div>
 <hr />
 
-<h4 style="color:#ededed">Register</h4>
+<h3 style="color: #ededed; margin-bottom: 20px;">Register</h3>
 
-<hr />
+
 <div class="row main-login">
     <div class="col-md-4 box-login">
         <form asp-action="create_HR">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <input placeholder="Name" style="border-radius:0px;background-color:#ebebeb;border:none;border-bottom:2px solid black" asp-for="HrName" class="form-control" autofocus />
+                <label class="control-label">Name</label>
+                <input placeholder="Name" style="border-radius: 5px; background-color: #ffffff; border: none; border-bottom: 2px solid black" asp-for="HrName" class="form-control" autofocus />
                 <span asp-validation-for="HrName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input placeholder="Email" style="border-radius: 0px; background-color: #ebebeb; border: none; border-bottom: 2px solid black" type="email" asp-for="HrEmail" class="form-control" />
+                <label class="control-label">Email</label>
+                <input placeholder="Email" style="border-radius: 5px; background-color: #ffffff; border: none; border-bottom: 2px solid black" type="email" asp-for="HrEmail" class="form-control" />
                 <span asp-validation-for="HrEmail" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input placeholder="Password" style="border-radius: 0px; background-color: #ebebeb; border: none; border-bottom: 2px solid black" type="password" asp-for="HrPassword" class="form-control" />
+                <label class="control-label">Password</label>
+                <input placeholder="Password" style="border-radius: 5px; background-color: #ffffff; border: none; border-bottom: 2px solid black" type="password" asp-for="HrPassword" class="form-control" />
                 <span asp-validation-for="HrPassword" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <select style="border-radius: 0px; background-color: #ebebeb; border: none; border-bottom: 2px solid black" asp-for="LocationId" class="form-control" asp-items="ViewBag.LocationId">
+                <label class="control-label">Location</label>
+                <select style="border-radius: 5px; background-color: #ffffff; border: none; border-bottom: 2px solid black" asp-for="LocationId" class="form-control" asp-items="ViewBag.LocationId">
                     <option selected disabled>Location</option>
                 </select>
                 <span asp-validation-for="LocationId" class="text-danger"></span>

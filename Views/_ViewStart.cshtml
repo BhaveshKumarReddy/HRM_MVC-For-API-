@@ -1,8 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
 @{
-    //HttpContextAccessor.HttpContext.Session.SetString("Location", "B6");
-    //HttpContextAccessor.HttpContext.Session.SetString("Email","ak@gmail.com");
+   @* HttpContextAccessor.HttpContext.Session.SetString("Location", "B4");
+    HttpContextAccessor.HttpContext.Session.SetString("Email","ad@gmail.com");*@
     ViewBag.Login = HttpContextAccessor.HttpContext.Session.GetString("Email");
     Layout = "_Layout";
 }
@@ -11,3 +11,17 @@
         setTimeout("preventBack()", 0);
         window.onunload = function () { null };
 </script>
+
+<style>
+    input::placeholder {
+        text-align: right;
+    }
+    label {
+        color: rgb(62, 62, 62);
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .form-control:focus {
+        border: 2px solid rgb(32, 5, 58) !important;
+    }
+</style>

@@ -3,9 +3,18 @@
 @{
     ViewData["Title"] = "logout_HR";
 }
+<style>
+    .back-link:hover {
+        background-color: #69738379;
+        border: 1px solid white;
+        border-radius: 5px;
+        padding: 6px 11px 7px 11px;
+        text-decoration: none;
+    }
+</style>
 
 <div>
-    <a style="color:#ededed" asp-controller="Home" asp-action="Index">
+    <a class="back-link" style="color:#ededed" asp-controller="Home" asp-action="Index">
         <i class="fa fa-arrow-left"></i> Back
     </a>
 </div>

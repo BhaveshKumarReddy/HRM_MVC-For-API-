@@ -23,7 +23,7 @@
             background-image: linear-gradient(to right bottom, #051937, #0f2241, #192b4a, #233554, #2c3f5e);
         }
 
-        .con-main {
+        .con-main-role {
         }
 
         .hoverEffecttt:hover {
@@ -35,6 +35,14 @@
             display: flex;
             flex-direction: row;
             justify-content: space-around;
+        }
+
+        .nav-link:hover {
+            background-color: #69738379;
+            border: 1px solid white;
+            border-radius: 5px;
+            padding: 6px 11px 7px 11px;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -87,7 +95,7 @@
     </header>
 
     <div class="container con-main">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-3 con-main-role">
             @RenderBody()
         </main>
     </div>
